@@ -1,0 +1,42 @@
+###### module: a business module to perform selection ##########################
+## business logic: module to select sample and corresponding expression value, 
+# and return the results as two df_table in one list
+
+# the selection condition in this logic is metal and time
+selectDataVarUI <- function(id) {
+  tagList(
+    datasetInput(NS(id, "data"), dataset_label="Studies", dataset_choices=name_libraries),
+    selectVarInput(NS(id, "time"), treatment="collected_time"),
+    selectVarInput(NS(id, "metal"), treatment="metal_embodied")
+  )
+}
+selectDataVarServer <- function(id) {
+  moduleServer(id, function(input, output, session) {
+    selected <- datasetServer("data")
+    
+    sample = selected$selected_sample
+    exprs = selected$selected_exprs
+    selected_library = selected$selected_library
+    
+    # the input and the logical result of condition "collected_time"
+    treat_time_condt <- selectVarServer("time", sample, treatment="collected_time")
+    treat_time = treat_time_condt$treat_condt 
+    time_condt = treat_time_condt$treat_selectinput
+    
+    # the input and the logical result of condition "metal_embodied"
+    treat_metal_condt <- selectVarServer("metal", sample, treatment="metal_embodied")
+    treat_metal = treat_metal_condt$treat_condt 
+    metal_condt = treat_metal_condt$treat_selectinput
+    
+    
+    list(treat_sample = reactive({sample()[treat_time()&treat_metal(),]}),
+         treat_exprs = reactive({
+           exprs()[, c('gene_id', sample()[treat_time()&treat_metal(), 2])]
+         }),# treat_expr
+         time_condt = reactive(time_condt()), 
+         metal_condt = reactive(metal_condt()),
+         library_condt = reactive(selected_library())
+    )# list
+  })
+}
+
