@@ -6,8 +6,9 @@ selectVarInput <- function(id, treatment="collected_time") {
 
 selectVarServer <- function(id, data, treatment="collected_time") {
   stopifnot(is.reactive(data))
-  moduleServer(id, function(input, output, session) {
-    observeEvent(data(), {
+  moduleServer(id, 
+    function(input, output, session) {
+      observeEvent(data(), {
       updateSelectInput(session, "var", choices=unique(data()[, paste0(treatment)]))
     })
     

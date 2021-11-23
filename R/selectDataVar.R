@@ -5,14 +5,14 @@
 # the selection condition in this logic is metal and time
 selectDataVarUI <- function(id) {
   tagList(
-    datasetInput(NS(id, "data"), dataset_label="Studies", dataset_choices=name_libraries),
+    datasetExprsInput(NS(id, "data"), dataset_label="Studies", dataset_choices=name_libraries),
     selectVarInput(NS(id, "time"), treatment="collected_time"),
     selectVarInput(NS(id, "metal"), treatment="metal_embodied")
   )
 }
 selectDataVarServer <- function(id) {
   moduleServer(id, function(input, output, session) {
-    selected <- datasetServer("data")
+    selected <- datasetExprsServer("data")
     
     sample = selected$selected_sample
     exprs = selected$selected_exprs
