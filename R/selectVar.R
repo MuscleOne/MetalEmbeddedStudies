@@ -1,10 +1,10 @@
 # module_1 to select samples in the sample sheet given a library
 ## helper ui 
-selectVarInput <- function(id, treatment="collected_time") {
+selectVarInput <- function(id, treatment="month_post_implantation") {
   selectInput(NS(id, "var"), paste0(treatment), choices = NULL, multiple = TRUE) 
 }
 
-selectVarServer <- function(id, data, treatment="collected_time") {
+selectVarServer <- function(id, data, treatment="month_post_implantation") {
   stopifnot(is.reactive(data))
   moduleServer(id, 
     function(input, output, session) {

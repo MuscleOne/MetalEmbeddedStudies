@@ -1,8 +1,8 @@
-###############################
+# rm(list=ls())
+##############################
 ### to load some source data in the /data file
 relative_path_prefix_data = "./data"
-load(paste0(relative_path_prefix_data, "/", "treatedData.RData"))
-load(paste0(relative_path_prefix_data, "/", "treatedSerumSmallRNA.RData"))
+load(paste0(relative_path_prefix_data, "/", "2021-11-24_l_sample_exprs_libraries.RData"))
 load(paste0(relative_path_prefix_data, "/", "animal_info_concentration_weight.RData"))
 # load("treatedData.RData")
 # load("treatedSerumSmallRNA.RData")
@@ -23,14 +23,18 @@ source(paste0(relative_path_prefix_R, "/", "selectVar.R"))
 
 ###############################
 ### some code prepared for frontend display
-l_sample = list(); l_exprs = list();
-l_sample = list(serum_miRNA_sample, serum_tRNA_sample, serum_rRNA_sample, mRNA_seq_sample, mRNA_array_sample)
-l_exprs = list(serum_miRNA_exprs, serum_tRNA_exprs, serum_rRNA_exprs, mRNA_seq_exprs, mRNA_array_exprs)
+# l_sample = list(); l_exprs = list();
+# l_sample = list(serum_miRNA_sample, serum_tRNA_sample, serum_rRNA_sample, mRNA_seq_sample, mRNA_array_sample)
+# l_exprs = list(serum_miRNA_exprs, serum_tRNA_exprs, serum_rRNA_exprs, mRNA_seq_exprs, mRNA_array_exprs)
+# 
+# name_libraries = c("serum_miRNA", "serum_tRNA", "serum_rRNA", "mRNA_seq", "mRNA_array")
+# 
+# names(l_sample) = name_libraries
+# names(l_exprs) = name_libraries
 
-name_libraries = c("serum_miRNA", "serum_tRNA", "serum_rRNA", "mRNA_seq", "mRNA_array")
-
-names(l_sample) = name_libraries
-names(l_exprs) = name_libraries
+l_sample = l_sample_exprs_libraries$l_sample
+l_exprs = l_sample_exprs_libraries$l_exprs
+name_libraries = l_sample_exprs_libraries$name_libraries
 
 ################################
 ### html in the frontend
