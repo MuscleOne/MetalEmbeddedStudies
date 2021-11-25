@@ -4,7 +4,7 @@ selectMetalMonthUI = function(id, df_data) {
   tagList(
     selectInput(NS(id, "metal_weight"), "Metal Implanted", 
                 choices = unique(df_data[, "metal_implanted"]), multiple = TRUE),
-    selectInput(NS(id, "month_weight"), "Euthanized Month Post-implanted", 
+    selectInput(NS(id, "month_weight"), "Euthanized Month Post-implantation", 
                 choices = sort(unique(df_data[, "euthanized_month_post_implantation"])), multiple = TRUE)
   )
 }
