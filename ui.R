@@ -77,10 +77,9 @@ shinyUI(
                 sidebarLayout(
                   sidebarPanel(
                     h3("Query Conditions"),
-                    selectInput("metal_2", "Metal Implanted", choices = (unique(df_sample_info_pheno[,"metal_embodied"])), multiple = TRUE),
-                    selectInput("month_2", "Euthanized Month Post-implanted", choices = sort(unique(df_sample_info_pheno[, "euthanized_period"])), multiple = TRUE),
-                    selectInput("animal_id_2", "Animal id", choices = sort(unique(df_sample_info_pheno[, "animal_ID"])), multiple = TRUE),
-                    selectInput("time_point", "Weighting Time", choices = sort(unique(df_joint_weight[, "time_point"])), multiple = TRUE)
+                    selectMetalMonthUI("weight", df_data=df_joint_weight), 
+                    selectListControlUI("animal_id_weight", df_data=df_joint_weight, label="animal id", col="animal_ID"),
+                    selectListControlUI("weeks_post_implantation", df_data=df_joint_weight, label="weighting time", col="weeks_post_implantation")
                   ),# sidebarPanel
                   mainPanel(
                     fluidRow(
@@ -91,8 +90,7 @@ shinyUI(
                              ), # box
                              box(
                                title = "Weight Information", width = NULL, solidHeader = T, status = "primary",
-                               playtableUI("weight")
-                               # verbatimTextOutput("weight")
+                               playtableUI("weight_play")
                              ) #box
                       )#column
                     )# fluiRow
@@ -104,10 +102,7 @@ shinyUI(
                 sidebarLayout(
                   sidebarPanel(
                     h3("Query Conditions"),
-                    selectInput("metal_3", "metal embodied", choices = unique(df_sample_info_pheno[, "metal_embodied"]), multiple = TRUE),
-                    selectInput("month_3", "euthanized time", choices = sort(unique(df_sample_info_pheno[, "euthanized_period"])), multiple = TRUE),
-                    selectInput("animal_id_3", "animal id", choices = sort(unique(df_sample_info_pheno[, "animal_ID"])), multiple = TRUE),
-                    selectInput("measure_type", "measure type", choices = sort(unique(df_joint_concentration[, "measure_type"])), multiple = TRUE)
+                    datasetConUI("data", dataset_label="concentration types", dataset_choices=vec_type_choices)
                   ),# sidebarPanel
                   mainPanel(
                     fluidRow(
@@ -118,7 +113,7 @@ shinyUI(
                              ), # box
                              box(
                                title = "concentration Information", width = NULL, solidHeader = T, status = "primary",
-                               playtableUI("concentration")
+                               playtableUI("concentration_play")
                              ) #box
                       )#column
                     )# fluiRow

@@ -4,17 +4,7 @@ library(shiny)
 
 shinyServer(function(input, output, session) {
   
-  # output$distPlot <- renderPlot({
-  #   
-  #   # generate bins based on input$bins from ui.R
-  #   x    <- faithful[, 2]
-  #   bins <- seq(min(x), max(x), length.out = input$bins + 1)
-  #   
-  #   # draw the histogram with the specified number of bins
-  #   hist(x, breaks = bins, col = 'darkgray', border = 'white')
-  #   
-  # })
-  # >>>>
+  ## >>>>
   ##### backend: to query data of serum small RNAs and the samples ##########
   # obtain a table of selected data/metadata, as well as condition we used
   treat_data = selectDataVarServer("condt")
@@ -41,77 +31,38 @@ shinyServer(function(input, output, session) {
   downloadServer("exprs", df_exprs, the_library, metal=metal, month=time, download_item="exprssion_matrix")
   ###### backend: to query data of serum small RNAs and the samples ##########
   ## <<<<
-
-  ## >>>>
+  # 
+  # ## >>>>
   ################# backend: weight information #######################
-  selected_metal_2 = reactive({
-    if(is.null(input$metal_2)) {
-      unique(df_sample_info_pheno[,"metal_embodied"])
-    } else {
-      input$metal_2
-    }
-  })
 
-  selected_month_2 = reactive({
-    if(is.null(input$month_2)) {
-      unique(df_sample_info_pheno[,"euthanized_period"])
-    } else {
-      input$month_2
-    }
-  })
+  #### input of metal, month and then control the "animal_id" and "time point" list ####
+  l_selected_condt = selectMetalMonthServer(id="weight", df_data=df_joint_weight)
 
-  ### to update the input component of range of animal id ###
-  id_choices_2 = reactive({
-    df_sample_info_pheno[
-      (df_sample_info_pheno[,"metal_embodied"] %in% selected_metal_2())&
-        (df_sample_info_pheno[,"euthanized_period"] %in% selected_month_2()), "animal_ID"]
-  })
+  # obtain the selected metal, month, and constrained id and time points lists
+  selected_metal_weight = l_selected_condt$selected_metal_weight
+  selected_month_weight = l_selected_condt$selected_month_weight
+  id_choices_weight = l_selected_condt$id_choices_weight
+  time_choices_weight = l_selected_condt$time_choices_weight
 
-  observeEvent( list(selected_metal_2(), selected_month_2()), {
-    updateSelectInput(session, "animal_id_2",
-                      choices=sort(unique(id_choices_2()))
-    )# updateSelectInput
-  })
+  #### input of the controlled (dynamically updated) list ####
+  # the selected id under constrain of month and metal
+  selected_id_weight = selectListControlServer(id="animal_id_weight",
+                                               df_data=df_joint_weight, metal=selected_metal_weight, month=selected_month_weight, l_choices=id_choices_weight)
+  # selected_id_weight = l_selected_id_weight$selected_controlled_col
 
-  ### to update the input component of range of weighting time point ###
-  weighting_time = reactive({
-    df_joint_weight[
-      (df_joint_weight[,"metal_embodied"] %in% selected_metal_2())&
-        (df_joint_weight[,"euthanized_period"] %in% selected_month_2()), "time_point"]
-  })
-
-  observeEvent( list(selected_metal_2(), selected_month_2()), {
-    updateSelectInput(session, "time_point",
-                      choices=sort(unique(weighting_time()))
-    )# updateSelectInput
-  })
+  # the selected time points under constrain of month and metal
+  selected_points = selectListControlServer(id="weeks_post_implantation",
+                                            df_data=df_joint_weight, metal=selected_metal_weight, month=selected_month_weight, l_choices=time_choices_weight)
+  ####
 
 
-  selected_id_2 = reactive({
-    if(is.null(input$animal_id_2)) {
-      unique(unique(id_choices_2()))
-    } else {
-      input$animal_id_2
-    }
-  })
-
-  selected_points = reactive({
-    if(is.null(input$time_point)) {
-      unique(weighting_time())
-    } else {
-      input$time_point
-    }
-  })
-
+  #### generate a dataframe to be displayed and downloaded ####
   df_weight_info = reactive({
-    df_joint_weight[(df_joint_weight[,"animal_ID"] %in% selected_id_2())&
-                      (df_joint_weight[,"time_point"] %in% selected_points()), ]
+    df_joint_weight[(df_joint_weight[,"animal_ID"] %in% selected_id_weight())&
+                      (df_joint_weight[,"weeks_post_implantation"] %in% selected_points()), ]
   })
 
-  playtableServer("weight", df_weight_info)
-  # output$weight <- renderPrint({
-  #   df_weight_info()
-  # })
+  playtableServer("weight_play", df_weight_info)
 
   weight_info = reactive({
     weight_info = "information_of"
@@ -119,61 +70,22 @@ shinyServer(function(input, output, session) {
   })
 
   downloadServer("download_weight", df_weight_info, weight_info,
-                 metal=selected_metal_2, month=selected_month_2, download_item="weight")
+                 metal=selected_metal_weight, month=selected_month_weight, download_item="weight")
+  #####
+
   ################# backend: weight information #######################
   ## <<<<
 
-  ## >>>>
-  ################# backend: concentration information #######################
-  selected_metal_3 = reactive({
-    if(is.null(input$metal_3)) {
-      unique(df_sample_info_pheno[,"metal_embodied"])
-    } else {
-      input$metal_3
-    }
-  })
+  # ## >>>>
+  # ################# backend: concentration information #######################
 
-  selected_month_3 = reactive({
-    if(is.null(input$month_3)) {
-      unique(df_sample_info_pheno[,"euthanized_period"])
-    } else {
-      input$month_3
-    }
-  })
-  id_choices_3 = reactive({
-    df_sample_info_pheno[
-      (df_sample_info_pheno[,"metal_embodied"] %in% selected_metal_3())&
-        (df_sample_info_pheno[,"euthanized_period"] %in% selected_month_3()), "animal_ID"]
-  })
+  l_concentration_info = datasetConServer("data")
 
-  observeEvent( list(selected_metal_3(), selected_month_3()), {
-    updateSelectInput(session, "animal_id_3",
-                      choices=sort(unique(id_choices_3()))
-    )# updateSelectInput
-  })
+  df_concentration_info = l_concentration_info$df_concentration_info
+  selected_metal_3 = l_concentration_info$selected_metal_3
+  selected_month_3 = l_concentration_info$selected_month_3
 
-  selected_id_3 = reactive({
-    if(is.null(input$animal_id_3)) {
-      unique(unique(id_choices_3()))
-    } else {
-      input$animal_id_3
-    }
-  })
-
-  selected_measure = reactive({
-    if(is.null(input$measure_type)) {
-      unique(df_joint_concentration[,"measure_type"])
-    } else {
-      input$measure_type
-    }
-  })
-
-  df_concentration_info = reactive({
-    df_joint_concentration[(df_joint_concentration[,"animal_ID"] %in% selected_id_3())&
-                             (df_joint_concentration[,"measure_type"] %in% selected_measure()), ]
-  })
-
-  playtableServer("concentration", df_concentration_info)
+  playtableServer("concentration_play", df_concentration_info)
 
   concentration_info = reactive({
     concentration_info = "information_of"
@@ -182,6 +94,7 @@ shinyServer(function(input, output, session) {
 
   downloadServer("download_concentration", df_concentration_info, concentration_info,
                  metal=selected_metal_3, month=selected_month_3, download_item="concentration")
-  ################# backend: concentration information #######################
-  ## <<<<
+
+  # ################# backend: concentration information #######################
+  # ## <<<<
 })

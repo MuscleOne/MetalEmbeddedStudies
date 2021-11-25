@@ -2,36 +2,47 @@
 ##############################
 ### to load some source data in the /data file
 relative_path_prefix_data = "./data"
+# load the expression data and the corresponding sample information
 load(paste0(relative_path_prefix_data, "/", "2021-11-24_l_sample_exprs_libraries.RData"))
-load(paste0(relative_path_prefix_data, "/", "animal_info_concentration_weight.RData"))
-# load("treatedData.RData")
-# load("treatedSerumSmallRNA.RData")
-# load("animal_info_concentration_weight.RData")
+# load the splited concentration data
+load(paste0(relative_path_prefix_data, "/", "2021-11-25_splited_con_data.RData"))
+# load the latest treated weight data
+load(paste0(relative_path_prefix_data, "/", "2021-11-25_weight_data.RData"))
+
 ################################
 ### to load some source code in the /R file
 relative_path_prefix_R = "R"
-# serumSmallRNA_files = list.files(relative_path_prefix)
-# [1] "app.R"               "dataset.R"           "download.R"         
-# [4] "fn_display_sample.R" "playtable.R"         "selectDataVar.R"    
-# [7] "selectVar.R"
-source(paste0(relative_path_prefix_R, "/", "datasetExprs.R"))
+
+########## general functions ###################################################
+# load the download sub-app
 source(paste0(relative_path_prefix_R, "/", "download.R"))
+# load the function to improve the frontend display
 source(paste0(relative_path_prefix_R, "/", "fn_display_sample.R"))
+# load a sub-app to display the query results as tables
 source(paste0(relative_path_prefix_R, "/", "playtable.R"))
-source(paste0(relative_path_prefix_R, "/", "selectDataVar.R"))
+
+###### sub-app of bussiness logic ##############################################
+###### expression case ######
+# sub-app to select sample from given dataset of studies
 source(paste0(relative_path_prefix_R, "/", "selectVar.R"))
+# sub-app to select sample and the corresponding expression value and respond results
+source(paste0(relative_path_prefix_R, "/", "selectDataVar.R"))
+
+###### weight case #####
+# sub-app to select metal and month, and constrained id and weeks, and provides results df
+source(paste0(relative_path_prefix_R, "/", "selectMetalMonth.R"))
+# dynamical constrain of id and weighting weeks under metal and month 
+source(paste0(relative_path_prefix_R, "/", "selectListControl.R"))
+
+###### concentration case ######
+# sub-app to dynamically query different kinds of concentration data
+source(paste0(relative_path_prefix_R, "/", "datasetCon.R"))
+# helps functions to query different kinds of concentration data at server side
+source(paste0(relative_path_prefix_R, "/", "fn_con_server.R"))
+
 
 ###############################
 ### some code prepared for frontend display
-# l_sample = list(); l_exprs = list();
-# l_sample = list(serum_miRNA_sample, serum_tRNA_sample, serum_rRNA_sample, mRNA_seq_sample, mRNA_array_sample)
-# l_exprs = list(serum_miRNA_exprs, serum_tRNA_exprs, serum_rRNA_exprs, mRNA_seq_exprs, mRNA_array_exprs)
-# 
-# name_libraries = c("serum_miRNA", "serum_tRNA", "serum_rRNA", "mRNA_seq", "mRNA_array")
-# 
-# names(l_sample) = name_libraries
-# names(l_exprs) = name_libraries
-
 l_sample = l_sample_exprs_libraries$l_sample
 l_exprs = l_sample_exprs_libraries$l_exprs
 name_libraries = l_sample_exprs_libraries$name_libraries
