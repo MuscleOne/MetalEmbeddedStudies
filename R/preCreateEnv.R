@@ -3,7 +3,7 @@
 ### to load some source data in the /data file
 relative_path_prefix_data = "./data"
 # load the expression data and the corresponding sample information
-load(paste0(relative_path_prefix_data, "/", "2021-11-24_l_sample_exprs_libraries.RData"))
+load(paste0(relative_path_prefix_data, "/", "2021-11-29_l_sample_exprs_libraries.RData"))
 # load the splited concentration data
 load(paste0(relative_path_prefix_data, "/", "2021-11-25_splited_con_data.RData"))
 # load the latest treated weight data
