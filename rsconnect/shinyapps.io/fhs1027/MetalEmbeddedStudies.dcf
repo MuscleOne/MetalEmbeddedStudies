@@ -1,0 +1,13 @@
+name: MetalEmbeddedStudies
+title: MetalEmbeddedStudies
+username:
+account: fhs1027
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5239820
+bundleId: 5313568
+url: https://fhs1027.shinyapps.io/MetalEmbeddedStudies/
+when: 1638350792.36459
+lastSyncTime: 1638350792.36459
+asMultiple: FALSE
+asStatic: FALSE
