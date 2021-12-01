@@ -28,11 +28,14 @@ selectDataVarServer <- function(id) {
     treat_metal = treat_metal_condt$treat_condt 
     metal_condt = treat_metal_condt$treat_selectinput
     
+    # observe(print({sample()[treat_time()&treat_metal(),]}))
+    treat_col_selected = reactive({sample()[treat_time()&treat_metal(), 2]})
     
     list(treat_sample = reactive({sample()[treat_time()&treat_metal(),]}),
-         treat_exprs = reactive({
-           exprs()[, c('transcript_id', sample()[treat_time()&treat_metal(), 2])]
-         }),# treat_expr
+         treat_exprs = 
+           reactive({
+             exprs()[, c('transcript_id', treat_col_selected())]
+             }),# treat_expr
          time_condt = reactive(time_condt()), 
          metal_condt = reactive(metal_condt()),
          library_condt = reactive(selected_library())
