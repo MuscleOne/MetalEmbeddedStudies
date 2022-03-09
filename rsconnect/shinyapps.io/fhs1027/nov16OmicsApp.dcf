@@ -5,9 +5,9 @@ account: fhs1027
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5201354
-bundleId: 5291271
+bundleId: 5312878
 url: https://fhs1027.shinyapps.io/nov16OmicsApp/
-when: 1637819523.73071
-lastSyncTime: 1637819523.73071
+when: 1638340671.36492
+lastSyncTime: 1638340671.36492
 asMultiple: FALSE
 asStatic: FALSE
