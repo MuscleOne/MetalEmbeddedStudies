@@ -51,6 +51,31 @@ name_libraries = l_sample_exprs_libraries$name_libraries
 ### html in the frontend
 # relative_path_prefix_html = "html"
 
+###############################
+# import helper function to prepare box 
+#Creating big boxes for main tabs in the landing page (see ui for formatting css)
+lp_main_box <- function(title_box, image_name, button_name, description) {
+  div(class="landing-page-box",
+      div(title_box, class = "landing-page-box-title"),
+      div(description, class = "landing-page-box-description"),
+      div(class = "landing-page-icon", style= paste0("background-image: url(", image_name, ".png);
+          background-size: auto 70%; background-position: center; background-repeat: no-repeat; ")),
+      actionButton(button_name, NULL, class="landing-page-button")
+  )
+}
+
+
+#Creating small boxes for further information in the landing page (see ui for formatting css)
+lp_about_box <- function(title_box, image_name, button_name, description) {
+  
+  div(class="landing-page-box-about",
+      div(title_box, class = "landing-page-box-title"),
+      div(class = "landing-page-about-icon", style= paste0("background-image: url(", image_name, ".png);
+          background-size: auto 80%; background-position: center; background-repeat: no-repeat; ")),
+      (actionButton(button_name, NULL,
+                    class="landing-page-button",
+                    icon = icon("arrow-circle-right", "icon-lp"),title=description)))
+}
 
 
 
