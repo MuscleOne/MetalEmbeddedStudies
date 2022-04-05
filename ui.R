@@ -160,10 +160,10 @@ shinyUI(
                            div(
                              br(), 
                              strong("Sample Information Under Given Conditions"),
-                             playtableUI("sample"),
+                             playtableExprsUI("sample"),
                              hr(),
                              strong("Expression Value Under Given Conditions"),
-                             playtableUI("exprs")
+                             playtableExprsUI("exprs")
                            ) # div
                     )# column
                   )# fluiRow

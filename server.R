@@ -37,13 +37,13 @@ shinyServer(function(input, output, session) {
   # the display form of the selected sample data
   display_sample = reactive({fn_display_sample(df_sample())})
   # display the data of sample information as well as expression
-  playtableServer("sample", display_sample)
+  playtableExprsServer("sample", display_sample)
   
   ##
   observe(print(df_sample()[1:5, 2]))
   # observe(print(df_exprs()[1:5, ]))
   
-  playtableServer("exprs", df_exprs)
+  playtableExprsServer("exprs", df_exprs)
   # have a look of conditions we used to make query
   output$condition = renderPrint(list(time(), metal(), the_library()))
   
