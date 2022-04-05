@@ -3,8 +3,9 @@
 ## helper ui 
 selectListControlUI = function(id, df_data, label, col) {
   tagList(
-    selectInput(NS(id, "controlled_col"), label, 
-                choices = sort(unique(df_data[, col])), multiple = TRUE),
+    selectizeInput(NS(id, "controlled_col"), label, 
+                choices = sort(unique(df_data[, col])), multiple = TRUE, 
+                options = list(placeholder = 'Show ALL')),
   )
 }
 
@@ -17,9 +18,9 @@ selectListControlServer = function(id, df_data, metal, month, l_choices) {
       stopifnot(is.reactive(l_choices))
       
       observeEvent( list(metal(), month()), {
-        updateSelectInput(session, "controlled_col", 
+        updateSelectizeInput(session, "controlled_col", 
           choices=sort(unique(l_choices()))
-        )# updateSelectInput
+        )# updateSelectizeInput
       })#observeEvent
        
       reactive({

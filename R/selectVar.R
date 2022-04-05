@@ -1,7 +1,8 @@
 # module_1 to select samples in the sample sheet given a library
 ## helper ui 
 selectVarInput <- function(id, treatment="month_post_implantation") {
-  selectInput(NS(id, "var"), paste0(treatment), choices = NULL, multiple = TRUE) 
+  selectizeInput(NS(id, "var"), paste0(treatment), choices = NULL, multiple = TRUE, 
+                 options = list(placeholder = 'Show ALL')) 
 }
 
 selectVarServer <- function(id, data, treatment="month_post_implantation") {
@@ -9,7 +10,7 @@ selectVarServer <- function(id, data, treatment="month_post_implantation") {
   moduleServer(id, 
     function(input, output, session) {
       observeEvent(data(), {
-      updateSelectInput(session, "var", choices=unique(data()[, paste0(treatment)]))
+      updateSelectizeInput(session, "var", choices=unique(data()[, paste0(treatment)]))
     })
     
     # the key commend to select the column in the input table we want!

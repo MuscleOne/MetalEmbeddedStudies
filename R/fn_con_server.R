@@ -24,9 +24,9 @@ fn_creatinine_con_server = function(df_input=df_creatinine_con, input, output, s
   })
   
   observeEvent( list(selected_metal_3(), selected_month_3()), {
-    updateSelectInput(session, "animal_id_1",
+    updateSelectizeInput(session, "animal_id_1",
                       choices=sort(unique(id_choices_3()))
-    )# updateSelectInput
+    )# updateSelectizeInput
   })
   
   selected_id_3 = reactive({
@@ -77,9 +77,9 @@ fn_abs_con_server = function(df_input=df_abs_con, input, output, session){
   })
   
   observeEvent( list(selected_metal_3(), selected_month_3()), {
-    updateSelectInput(session, "animal_id_2",
+    updateSelectizeInput(session, "animal_id_2",
                       choices=sort(unique(id_choices_3()))
-    )# updateSelectInput
+    )# updateSelectizeInput
   })
   
   selected_id_3 = reactive({
@@ -138,9 +138,9 @@ fn_related_con_server = function(df_input=df_related_con, input, output, session
   })
 
   observeEvent( list(selected_metal_3(), selected_month_3()), {
-    updateSelectInput(session, "animal_id_3",
+    updateSelectizeInput(session, "animal_id_3",
                       choices=sort(unique(id_choices_3()))
-    )# updateSelectInput
+    )# updateSelectizeInput
   })
 
   selected_id_3 = reactive({

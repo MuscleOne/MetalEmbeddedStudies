@@ -2,35 +2,46 @@
 datasetConUI = function(id, dataset_label="concentration types", 
                 dataset_choices=vec_type_choices) {
   tagList(
-    selectInput(NS(id, "con_types"), dataset_label, dataset_choices),
+    selectizeInput(NS(id, "con_types"), dataset_label, dataset_choices),
     # parameter_tabs
     tabsetPanel(
       id = NS(id, "params"),
       type = "hidden",
       tabPanel("creatinine_concentration",
-               selectInput(NS(id, "metal_1"), "metal implanted", 
-                           choices = unique(df_creatinine_con[, "metal_implanted"]), multiple = TRUE),
-               selectInput(NS(id, "month_1"), "euthanized month post-implantation", 
-                           choices = sort(unique(df_creatinine_con[, "euthanized_month_post_implantation"])), multiple = TRUE),
-               selectInput(NS(id, "animal_id_1"), "animal id", choices = sort(unique(df_creatinine_con[, "animal_ID"])), multiple = TRUE)
+               selectizeInput(NS(id, "metal_1"), "metal implanted", 
+                           choices = unique(df_creatinine_con[, "metal_implanted"]), multiple = TRUE, 
+                           options = list(placeholder = 'Show ALL')),
+               selectizeInput(NS(id, "month_1"), "euthanized month post-implantation", 
+                           choices = sort(unique(df_creatinine_con[, "euthanized_month_post_implantation"])), multiple = TRUE, 
+                           options = list(placeholder = 'Show ALL')),
+               selectizeInput(NS(id, "animal_id_1"), "animal id", choices = sort(unique(df_creatinine_con[, "animal_ID"])), multiple = TRUE, 
+                              options = list(placeholder = 'Show ALL'))
       ),#tabPanel: creatinine concentration
       tabPanel("absolute_metal_concentration",
-               selectInput(NS(id, "metal_2"), "metal implanted", 
-                           choices = unique(df_abs_con[, "metal_implanted"]), multiple = TRUE),
-               selectInput(NS(id, "month_2"), "euthanized month post-implantation", 
-                           choices = sort(unique(df_abs_con[, "euthanized_month_post_implantation"])), multiple = TRUE),
-               selectInput(NS(id, "animal_id_2"), "animal id", choices = sort(unique(df_abs_con[, "animal_ID"])), multiple = TRUE),
-               selectInput(NS(id, "measure_tissue_2"), "measure tissue",
-                           choices = sort(unique(df_abs_con[, "measure_tissue"])), multiple = TRUE)
+               selectizeInput(NS(id, "metal_2"), "metal implanted", 
+                           choices = unique(df_abs_con[, "metal_implanted"]), multiple = TRUE, 
+                           options = list(placeholder = 'Show ALL')),
+               selectizeInput(NS(id, "month_2"), "euthanized month post-implantation", 
+                           choices = sort(unique(df_abs_con[, "euthanized_month_post_implantation"])), multiple = TRUE, 
+                           options = list(placeholder = 'Show ALL')),
+               selectizeInput(NS(id, "animal_id_2"), "animal id", choices = sort(unique(df_abs_con[, "animal_ID"])), multiple = TRUE, 
+                              options = list(placeholder = 'Show ALL')),
+               selectizeInput(NS(id, "measure_tissue_2"), "measure tissue",
+                           choices = sort(unique(df_abs_con[, "measure_tissue"])), multiple = TRUE, 
+                           options = list(placeholder = 'Show ALL'))
       ),#tabPanel: absolute metal concentration
       tabPanel("related_metal_concentration",
-               selectInput(NS(id, "metal_3"), "metal implanted", 
-                           choices = unique(df_related_con[, "metal_implanted"]), multiple = TRUE),
-               selectInput(NS(id, "month_3"), "euthanized month post-implantation", 
-                           choices = sort(unique(df_related_con[, "euthanized_month_post_implantation"])), multiple = TRUE),
-               selectInput(NS(id, "animal_id_3"), "animal id", choices = sort(unique(df_related_con[, "animal_ID"])), multiple = TRUE),
-               selectInput(NS(id, "measure_tissue_3"), "measure tissue",
-                           choices = sort(unique(df_related_con[, "measure_tissue"])), multiple = TRUE)
+               selectizeInput(NS(id, "metal_3"), "metal implanted", 
+                           choices = unique(df_related_con[, "metal_implanted"]), multiple = TRUE, 
+                           options = list(placeholder = 'Show ALL')),
+               selectizeInput(NS(id, "month_3"), "euthanized month post-implantation", 
+                           choices = sort(unique(df_related_con[, "euthanized_month_post_implantation"])), multiple = TRUE, 
+                           options = list(placeholder = 'Show ALL')),
+               selectizeInput(NS(id, "animal_id_3"), "animal id", choices = sort(unique(df_related_con[, "animal_ID"])), multiple = TRUE, 
+                              options = list(placeholder = 'Show ALL')),
+               selectizeInput(NS(id, "measure_tissue_3"), "measure tissue",
+                           choices = sort(unique(df_related_con[, "measure_tissue"])), multiple = TRUE, 
+                           options = list(placeholder = 'Show ALL'))
       )#tabPanel: related metal concentration
     )#tabsetPanel
   )
