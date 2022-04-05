@@ -31,7 +31,7 @@ shinyUI(
       title = div(tags$a(img(src="UK_public_health.png", height=40), 
                          href= "https://cph.uky.edu/"), # title 
                   style = "position: relative; top: -5px;"), # Navigation bar
-      windowTitle = "Metals Embedding Studies", #t itle for browser tab
+      windowTitle = "Metals Embedded Study", #t itle for browser tab
       theme = shinytheme("paper"), #Theme of the app (paper navbar)
       collapsible = TRUE, #tab panels collapse into menu in small screens
       header = tags$head(includeCSS("www/styles.css"), # CSS styles
@@ -104,7 +104,7 @@ shinyUI(
             fluidRow(
               column(width = 10, offset = 1,
                      div(
-                       h4("Military Related Metal Fragments Embedding"), 
+                       h4("Military Related Metal Fragments Embedded"), 
                        p("Injuries with embedded metal fragments are the unfortunate consequence of modern armed conflicts, 
                          and many defense personnel survive with the embedded fragments in their bodies. 
                          In response to concerns about embedded metal fragments, the Armed Forces Radiobiology Research Institute 
@@ -137,11 +137,13 @@ shinyUI(
             width = 7, style="margin-left:4%; margin-right:4%",
             div(
               # # title="Select an indicator to see comparative information. Click in this box, hit backspace and start to type if you want to quickly find an indicator.",
-              h4("Introduction to the Expression Profiling Data"),
-              p("Through this application, it is intended to develop a learning environment for anyone who is starting in the study of statistical modeling,
-                  specifically linear regression through the method of ordinary least squares.
-                  In any case, we will focus on the procedure (graphics, interpretations, hypotheses, etc.) and not on the mathematical processes.",
-                strong("But do not worry!"), "you will find alternatives to learn all these technical aspects independently."),
+              h4("Expression Data from Urine, Serum and Muscle Tissue"),
+              p("The data include:"),
+              tags$ul(
+                tags$li("Expression values"), 
+                tags$li("Information on animal ID, testing sample name and treatment information such as implanted metal name, tissue type, sample collecting time")
+                ),# tags$ul
+              p("Currently, only micro-RNA sequencing data from samples of urine and serum, and muscle transcription profiling via both NGS and microarray, are available."),
               hr(),
               h4("Export the Query Results to .csv File"),
               downloadUI("sample", download_item="sample"),
@@ -186,11 +188,13 @@ shinyUI(
             width = 7, style="margin-left:4%; margin-right:4%", 
             div(
               # title="Select an indicator to see comparative information. Click in this box, hit backspace and start to type if you want to quickly find an indicator.",
-              h4("Introduction to the Metal Concentrations Data"), 
-              p("Through this application, it is intended to develop a learning environment for anyone who is starting in the study of statistical modeling, 
-                  specifically linear regression through the method of ordinary least squares. 
-                  In any case, we will focus on the procedure (graphics, interpretations, hypotheses, etc.) and not on the mathematical processes.", 
-                strong("But do not worry!"), "you will find alternatives to learn all these technical aspects independently."), 
+              h4("Metal Concentrations Determined By ICP-MS"), 
+              p("The data is generated from three types of tissues: serum, stomach, urine, which includes:"),
+              tags$ul(
+                tags$li("Concentration of a metal (say Ni) in a tissue in rats embodied with this metal"),
+                tags$li("Concentration of a metal (say Ni) in a tissue in rats embodied with Ta"),
+                tags$li("Concentration of creatinine at euthanasia which helps to normalize the metal concentration")
+              ),# tags$ul
               hr(), 
               h4("Export the Query Results to .csv File"),
               downloadUI("download_concentration", "concentration"),
@@ -230,10 +234,12 @@ shinyUI(
             div(
               # title="Select an indicator to see comparative information. Click in this box, hit backspace and start to type if you want to quickly find an indicator.",
               h4("Introduction to the Body Weight Data"),
-              p("Through this application, it is intended to develop a learning environment for anyone who is starting in the study of statistical modeling,
-                  specifically linear regression through the method of ordinary least squares.
-                  In any case, we will focus on the procedure (graphics, interpretations, hypotheses, etc.) and not on the mathematical processes.",
-                strong("But do not worry!"), "you will find alternatives to learn all these technical aspects independently."),
+              p("The data include:"),
+              tags$ul(
+                tags$li("Weight values"), 
+                tags$li("Information on animal ID and treatment information such as embodied metal name, euthanized time, weighting time")
+              ),# tags$ul
+              p("You can search the weight of the rats, by given conditions of metal embedded, the euthanized period, and the weighting time points."),
               hr(),
               h4("Export the Query Results to .csv File"),
               downloadUI("download_weight", "weight"),
