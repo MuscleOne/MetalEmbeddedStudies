@@ -1,7 +1,7 @@
 ## module to provide download function
 ## modul with download ui and server
 downloadUI = function(id, download_item = "sample"){
-  downloadButton(NS(id, "download"), paste0("Export ", download_item, " to .tsv"))
+  downloadButton(NS(id, "download"), paste0("Export ", download_item, " to .tsv"), class = "down")
 }
 downloadServer = function(id, df_table, pre_name, metal=metal, month=time, download_item="sample"){
   stopifnot(is.reactive(df_table))
