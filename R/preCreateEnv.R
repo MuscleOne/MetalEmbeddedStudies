@@ -24,9 +24,10 @@ source(paste0(relative_path_prefix_R, "/", "playtable.R"))
 ###### sub-app of bussiness logic ##############################################
 ###### expression case ######
 # sub-app to select sample from given dataset of studies
-source(paste0(relative_path_prefix_R, "/", "selectVar.R"))
+source(paste0(relative_path_prefix_R, "/", "query_exprs_select_studies.R"))
+source(paste0(relative_path_prefix_R, "/", "query_exprs_select_cohorts.R"))
 # sub-app to select sample and the corresponding expression value and respond results
-source(paste0(relative_path_prefix_R, "/", "selectDataVar.R"))
+source(paste0(relative_path_prefix_R, "/", "query_exprs.R"))
 
 ###### weight case #####
 # sub-app to select metal and month, and constrained id and weeks, and provides results df

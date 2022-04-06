@@ -23,16 +23,16 @@ shinyServer(function(input, output, session) {
   ## >>>>
   ##### backend: to query data of serum small RNAs and the samples ##########
   # obtain a table of selected data/metadata, as well as condition we used
-  treat_data = selectDataVarServer("condt")
+  cohort_data = query_exprs_server("condt")
   
   # dataframe table of sample information and expression matrix
-  df_sample = treat_data$treat_sample
-  df_exprs = treat_data$treat_exprs
+  df_sample = cohort_data$cohort_sample
+  df_exprs = cohort_data$cohort_exprs
   
   # what condition we used to make query
-  the_library = treat_data$library_condt
-  time = treat_data$time_condt
-  metal = treat_data$metal_condt
+  the_library = cohort_data$library_condt
+  time = cohort_data$time_condt
+  metal = cohort_data$metal_condt
   
   # the display form of the selected sample data
   display_sample = reactive({fn_display_sample(df_sample())})

@@ -130,7 +130,8 @@ shinyUI(
           column(
             width = 4,
             h4("Query Options", style="color:white;font-weight: bold"),
-            selectDataVarUI("condt"),
+            # selectDataVarUI("condt"),
+            query_exprs_ui("condt"), 
             style="color:white;background-color:#005ba0;padding:2%;border-radius:8px;"
           ), # column
           column(
