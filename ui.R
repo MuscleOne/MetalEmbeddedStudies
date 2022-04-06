@@ -137,15 +137,15 @@ shinyUI(
             width = 7, style="margin-left:4%; margin-right:4%",
             div(
               # # title="Select an indicator to see comparative information. Click in this box, hit backspace and start to type if you want to quickly find an indicator.",
-              h4("Expression Data from Urine, Serum and Muscle Tissue"),
-              p("The data include:"),
+              h4("Expression Data from Urine, Serum and Muscle Tissue", style="font-weight: bold"),
+              p("The data includes:"),
               tags$ul(
                 tags$li("Expression values"), 
                 tags$li("Information on animal ID, testing sample name and treatment information such as implanted metal name, tissue type, sample collecting time")
                 ),# tags$ul
               p("Currently, only micro-RNA sequencing data from samples of urine and serum, and muscle transcription profiling via both NGS and microarray, are available."),
               hr(),
-              h4("Export the Query Results to .csv File"),
+              h4("Export the Query Results to .csv File", style="font-weight: bold"),
               downloadUI("sample", download_item="sample"),
               downloadUI("exprs", download_item="exprs"),
               style="color:black;background-color:white;padding:15px;border-radius:10px"
@@ -188,7 +188,7 @@ shinyUI(
             width = 7, style="margin-left:4%; margin-right:4%", 
             div(
               # title="Select an indicator to see comparative information. Click in this box, hit backspace and start to type if you want to quickly find an indicator.",
-              h4("Metal Concentrations Determined By ICP-MS"), 
+              h4("Metal Concentrations Determined By ICP-MS", style="font-weight: bold"), 
               p("The data is generated from three types of tissues: serum, stomach, urine, which includes:"),
               tags$ul(
                 tags$li("Concentration of a metal (say Ni) in a tissue in rats embodied with this metal"),
@@ -196,7 +196,7 @@ shinyUI(
                 tags$li("Concentration of creatinine at euthanasia which helps to normalize the metal concentration")
               ),# tags$ul
               hr(), 
-              h4("Export the Query Results to .csv File"),
+              h4("Export the Query Results to .csv File", style="font-weight: bold"),
               downloadUI("download_concentration", "concentration"),
               style="color:black;background-color:white;padding:15px;border-radius:10px"
             ) #div
@@ -233,15 +233,15 @@ shinyUI(
             width = 7, style="margin-left:4%; margin-right:4%",
             div(
               # title="Select an indicator to see comparative information. Click in this box, hit backspace and start to type if you want to quickly find an indicator.",
-              h4("Introduction to the Body Weight Data"),
-              p("The data include:"),
+              h4("Introduction to the Body Weight Data", style="font-weight: bold"),
+              p("The data includes:"),
               tags$ul(
                 tags$li("Weight values"), 
                 tags$li("Information on animal ID and treatment information such as embodied metal name, euthanized time, weighting time")
               ),# tags$ul
               p("You can search the weight of the rats, by given conditions of metal embedded, the euthanized period, and the weighting time points."),
               hr(),
-              h4("Export the Query Results to .csv File"),
+              h4("Export the Query Results to .csv File", style="font-weight: bold"),
               downloadUI("download_weight", "weight"),
               style="color:black;background-color:white;padding:15px;border-radius:10px"
             ) #div
@@ -266,7 +266,7 @@ shinyUI(
     
     div(style = "margin-bottom: 30px;"), # this adds breathing space between content and footer
     #Copyright warning
-    tags$footer(column(6, "© University of Kentucky v1.0 2022"), 
+    tags$footer(column(6, "© 2022 University of Kentucky"), 
                 # column(3, tags$a(href="mailto:douglas.zhang@uky.edu", tags$b("Contact us!"), 
                 #                  class="externallink", style = "color: white; text-decoration: none")), 
                 # column(3, tags$a(href="https://www.scotpho.org.uk/about-us/scotpho-website-policies-and-statements/privacy-and-cookies", 
