@@ -1,0 +1,11 @@
+Package: MetalEmbeddedStudies
+Title: Prototype of a webapp for data management of metal embedded studies in rats.
+Version: 0.0.0.9000
+Authors@R: 
+    person("Tianhao", "Chen", , "chentianhao@hrbeu.edu.cn", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: A shiny-based web interface for you to search and download the scientific data generated via a biological study in rodent shrapnel model with pure metals implantation.
+License: `use_mit_license()`
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2

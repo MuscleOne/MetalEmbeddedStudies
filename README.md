@@ -1,4 +1,4 @@
-# A Curated Dataset of Biological Study for Rodent Shrapnel Model with Pure Metals Implantation
+# A Curated Dataset of Biological Study in Rodent Shrapnel Model with Pure Metals Implantation
 _by Chen Tianhao_ and _Prof. Xiaohua Douglas Zhang_
 
 ## Summary

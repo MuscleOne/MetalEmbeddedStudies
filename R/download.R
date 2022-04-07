@@ -1,9 +1,33 @@
 ## module to provide download function
 ## modul with download ui and server
-downloadUI = function(id, download_item = "sample"){
-  downloadButton(NS(id, "download"), paste0("Export ", download_item, " to .tsv"))
+
+#' Shiny Module UI for Downloading Dataframe 
+#'
+#' @param id shiny id 
+#' @param download_item a name of the download item, i.e., the title of the dataframe, and it would be displayed in the frontend.
+#'
+#' @return shiny input 
+#' @export
+#'
+#' @examples
+download_ui = function(id, download_item = "sample"){
+  downloadButton(NS(id, "download"), paste0("Export ", download_item, " to .tsv"), class = "down")
 }
-downloadServer = function(id, df_table, pre_name, metal=metal, month=time, download_item="sample"){
+
+#' Shiny Module Server for Downloading Dataframe 
+#'
+#' @param id shiniy id
+#' @param df_table the dataframe to be downloaded
+#' @param pre_name prefix of the name of the download object, char 
+#' @param metal metal selected, char
+#' @param month month selected, char
+#' @param download_item a name of the download item, i.e., the title of the dataframe, it would be saved as a part of the download object. 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+download_server = function(id, df_table, pre_name, metal=metal, month=time, download_item="sample"){
   stopifnot(is.reactive(df_table))
   stopifnot(is.reactive(pre_name))
   stopifnot(is.reactive(metal))
