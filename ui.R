@@ -182,7 +182,7 @@ shinyUI(
           column(
             width = 4, 
             h4("Query Options", style="color:white;font-weight: bold"), 
-            datasetConUI("data", dataset_label="concentration types", dataset_choices=vec_type_choices), 
+            query_con_ui("data", dataset_label="concentration types", dataset_choices=vec_type_choices), 
             style="color:white;background-color:#005ba0;padding:2%;border-radius:8px;"
           ), # column
           column(
@@ -225,9 +225,9 @@ shinyUI(
           column(
             width = 4,
             h4("Query Options", style="color:white;font-weight: bold"),
-            selectMetalMonthUI("weight", df_data=df_joint_weight), 
-            selectListControlUI("animal_id_weight", df_data=df_joint_weight, label="animal id", col="animal_ID"),
-            selectListControlUI("weeks_post_implantation", df_data=df_joint_weight, label="weighting time", col="weeks_post_implantation"),
+            query_weight_cohorts_ui("weight", df_data=df_joint_weight), 
+            query_weight_idx_ui("animal_id_weight", df_data=df_joint_weight, label="animal id", col="animal_ID"),
+            query_weight_idx_ui("weeks_post_implantation", df_data=df_joint_weight, label="weighting time", col="weeks_post_implantation"),
             style="color:white;background-color:#005ba0;padding:2%;border-radius:8px;"
           ), # column
           column(

@@ -57,7 +57,7 @@ shinyServer(function(input, output, session) {
   ################# backend: weight information #######################
   
   #### input of metal, month and then control the "animal_id" and "time point" list ####
-  l_selected_condt = selectMetalMonthServer(id="weight", df_data=df_joint_weight)
+  l_selected_condt = query_weight_cohorts_server(id="weight", df_data=df_joint_weight)
   
   # obtain the selected metal, month, and constrained id and time points lists
   selected_metal_weight = l_selected_condt$selected_metal_weight
@@ -67,12 +67,12 @@ shinyServer(function(input, output, session) {
   
   #### input of the controlled (dynamically updated) list ####
   # the selected id under constrain of month and metal
-  selected_id_weight = selectListControlServer(id="animal_id_weight",
+  selected_id_weight = query_weight_idx_server(id="animal_id_weight",
                                                df_data=df_joint_weight, metal=selected_metal_weight, month=selected_month_weight, l_choices=id_choices_weight)
   # selected_id_weight = l_selected_id_weight$selected_controlled_col
   
   # the selected time points under constrain of month and metal
-  selected_points = selectListControlServer(id="weeks_post_implantation",
+  selected_points = query_weight_idx_server(id="weeks_post_implantation",
                                             df_data=df_joint_weight, metal=selected_metal_weight, month=selected_month_weight, l_choices=time_choices_weight)
   ####
   
@@ -100,11 +100,11 @@ shinyServer(function(input, output, session) {
   # ## >>>>
   # ################# backend: concentration information #######################
   
-  l_concentration_info = datasetConServer("data")
+  l_concentration_info = query_con_server("data")
   
   df_concentration_info = l_concentration_info$df_concentration_info
-  selected_metal_3 = l_concentration_info$selected_metal_3
-  selected_month_3 = l_concentration_info$selected_month_3
+  selected_metal = l_concentration_info$selected_metal
+  selected_month = l_concentration_info$selected_month
   
   playtableServer("concentration_play", df_concentration_info)
   
@@ -114,7 +114,7 @@ shinyServer(function(input, output, session) {
   })
   
   downloadServer("download_concentration", df_concentration_info, concentration_info,
-                 metal=selected_metal_3, month=selected_month_3, download_item="concentration")
+                 metal=selected_metal, month=selected_month, download_item="concentration")
   
   # ################# backend: concentration information #######################
   # ## <<<<

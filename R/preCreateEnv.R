@@ -20,6 +20,7 @@ source(paste0(relative_path_prefix_R, "/", "download.R"))
 source(paste0(relative_path_prefix_R, "/", "fn_display_sample.R"))
 # load a sub-app to display the query results as tables
 source(paste0(relative_path_prefix_R, "/", "playtable.R"))
+source(paste0(relative_path_prefix_R, "/", "playtableExprs.R"))
 
 ###### sub-app of bussiness logic ##############################################
 ###### expression case ######
@@ -29,17 +30,17 @@ source(paste0(relative_path_prefix_R, "/", "query_exprs_select_cohorts.R"))
 # sub-app to select sample and the corresponding expression value and respond results
 source(paste0(relative_path_prefix_R, "/", "query_exprs.R"))
 
-###### weight case #####
-# sub-app to select metal and month, and constrained id and weeks, and provides results df
-source(paste0(relative_path_prefix_R, "/", "selectMetalMonth.R"))
-# dynamical constrain of id and weighting weeks under metal and month 
-source(paste0(relative_path_prefix_R, "/", "selectListControl.R"))
-
 ###### concentration case ######
 # sub-app to dynamically query different kinds of concentration data
-source(paste0(relative_path_prefix_R, "/", "datasetCon.R"))
+source(paste0(relative_path_prefix_R, "/", "query_con.R"))
 # helps functions to query different kinds of concentration data at server side
-source(paste0(relative_path_prefix_R, "/", "fn_con_server.R"))
+source(paste0(relative_path_prefix_R, "/", "query_con_tab_server.R"))
+
+###### weight case #####
+# sub-app to select metal and month, and constrained id and weeks, and provides results df
+source(paste0(relative_path_prefix_R, "/", "query_weight_cohorts.R"))
+# dynamical constrain of id and weighting weeks under metal and month 
+source(paste0(relative_path_prefix_R, "/", "query_weight_idx.R"))
 
 
 ###############################
