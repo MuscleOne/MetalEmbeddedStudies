@@ -147,8 +147,8 @@ shinyUI(
               p("Currently, only micro-RNA sequencing data from samples of urine and serum, and muscle transcription profiling via both NGS and microarray, are available."),
               hr(),
               h4("Export the Query Results to .csv File", style="font-weight: bold"),
-              downloadUI("sample", download_item="sample"),
-              downloadUI("exprs", download_item="exprs"),
+              download_ui("sample", download_item="sample"),
+              download_ui("exprs", download_item="exprs"),
               style="color:black;background-color:white;padding:15px;border-radius:10px"
             ) #div
           ) # column
@@ -163,10 +163,10 @@ shinyUI(
                            div(
                              br(), 
                              strong("Sample Information Under Given Conditions"),
-                             playtableExprsUI("sample"),
+                             display_table_ui("sample"),
                              hr(),
                              strong("Expression Value Under Given Conditions"),
-                             playtableExprsUI("exprs")
+                             display_table_ui("exprs")
                            ) # div
                     )# column
                   )# fluiRow
@@ -198,7 +198,7 @@ shinyUI(
               ),# tags$ul
               hr(), 
               h4("Export the Query Results to .csv File", style="font-weight: bold"),
-              downloadUI("download_concentration", "concentration"),
+              download_ui("download_concentration", "concentration"),
               style="color:black;background-color:white;padding:15px;border-radius:10px"
             ) #div
           ), # column
@@ -211,7 +211,7 @@ shinyUI(
                            hr(),
                            h4("Preview of the Query Results", style="color:#0033A0"),
                            div(
-                             playtableUI("concentration_play")
+                             display_table_ui("concentration_play")
                            ) # div
                     )# column
                   )# fluiRow
@@ -243,7 +243,7 @@ shinyUI(
               p("You can search the weight of the rats, by given conditions of metal embedded, the euthanized period, and the weighting time points."),
               hr(),
               h4("Export the Query Results to .csv File", style="font-weight: bold"),
-              downloadUI("download_weight", "weight"),
+              download_ui("download_weight", "weight"),
               style="color:black;background-color:white;padding:15px;border-radius:10px"
             ) #div
           ), # column
@@ -256,7 +256,7 @@ shinyUI(
                            hr(),
                            h4("Preview of the Query Results", style="color:#0033A0"),
                            div(
-                             playtableUI("weight_play")
+                             display_table_ui("weight_play")
                            ) # div
                     )# column
                   )# fluiRow

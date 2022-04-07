@@ -37,19 +37,19 @@ shinyServer(function(input, output, session) {
   # the display form of the selected sample data
   display_sample = reactive({fn_display_sample(df_sample())})
   # display the data of sample information as well as expression
-  playtableExprsServer("sample", display_sample)
+  display_table_server("sample", display_sample, remove_sub = F)
   
   ##
   observe(print(df_sample()[1:5, 2]))
   # observe(print(df_exprs()[1:5, ]))
   
-  playtableExprsServer("exprs", df_exprs)
+  display_table_server("exprs", df_exprs, remove_sub = F)
   # have a look of conditions we used to make query
   output$condition = renderPrint(list(time(), metal(), the_library()))
   
   # the download function
-  downloadServer("sample", df_sample, the_library, metal=metal, month=time, download_item="sample_info")
-  downloadServer("exprs", df_exprs, the_library, metal=metal, month=time, download_item="exprssion_matrix")
+  download_server("sample", df_sample, the_library, metal=metal, month=time, download_item="sample_info")
+  download_server("exprs", df_exprs, the_library, metal=metal, month=time, download_item="exprssion_matrix")
   ###### backend: to query data of serum small RNAs and the samples ##########
   ## <<<<
   # 
@@ -83,14 +83,14 @@ shinyServer(function(input, output, session) {
                       (df_joint_weight[,"weeks_post_implantation"] %in% selected_points()), ]
   })
   
-  playtableServer("weight_play", df_weight_info)
+  display_table_server("weight_play", df_weight_info)
   
   weight_info = reactive({
     weight_info = "information_of"
     weight_info
   })
   
-  downloadServer("download_weight", df_weight_info, weight_info,
+  download_server("download_weight", df_weight_info, weight_info,
                  metal=selected_metal_weight, month=selected_month_weight, download_item="weight")
   #####
   
@@ -106,14 +106,14 @@ shinyServer(function(input, output, session) {
   selected_metal = l_concentration_info$selected_metal
   selected_month = l_concentration_info$selected_month
   
-  playtableServer("concentration_play", df_concentration_info)
+  display_table_server("concentration_play", df_concentration_info)
   
   concentration_info = reactive({
     concentration_info = "information_of"
     concentration_info
   })
   
-  downloadServer("download_concentration", df_concentration_info, concentration_info,
+  download_server("download_concentration", df_concentration_info, concentration_info,
                  metal=selected_metal, month=selected_month, download_item="concentration")
   
   # ################# backend: concentration information #######################

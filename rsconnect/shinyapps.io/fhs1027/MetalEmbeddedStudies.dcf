@@ -5,10 +5,10 @@ account: fhs1027
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5239820
-bundleId: 5770261
+bundleId: 5775400
 url: https://fhs1027.shinyapps.io/MetalEmbeddedStudies/
-when: 1649250747.58683
-lastSyncTime: 1649250747.58683
+when: 1649356987.73664
+lastSyncTime: 1649356987.73664
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .RData
+ignoredFiles: .RData|DESCRIPTION|html/test.html|img/study_design.png|img/webapp.png|NAMESPACE|README.html|README.md

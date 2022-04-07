@@ -19,8 +19,7 @@ source(paste0(relative_path_prefix_R, "/", "download.R"))
 # load the function to improve the frontend display
 source(paste0(relative_path_prefix_R, "/", "fn_display_sample.R"))
 # load a sub-app to display the query results as tables
-source(paste0(relative_path_prefix_R, "/", "playtable.R"))
-source(paste0(relative_path_prefix_R, "/", "playtableExprs.R"))
+source(paste0(relative_path_prefix_R, "/", "display_table.R"))
 
 ###### sub-app of bussiness logic ##############################################
 ###### expression case ######
